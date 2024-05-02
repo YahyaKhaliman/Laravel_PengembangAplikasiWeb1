@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll " style="--bs-scroll-height: 100px;">
         <li class="nav-item ">
-          <a class="nav-link active navbar-text text-white " aria-current="page" href="{{url('/')}}">Home</a>
+          <a class="nav-link active navbar-text text-white " aria-current="page" href="{{url('dashboard')}}">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{url('tentang')}}">Tentang</a>
@@ -21,8 +21,10 @@
             Link dropdown
           </a>
           <ul class="dropdown-menu">
+            @if(Auth::user()->hak_akses=='superuser')
             <li><a class="dropdown-item" href="{{url('form')}}">form</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            @endif
+            <li><a class="dropdown-item" href="{{url('register')}}">register</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
