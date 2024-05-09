@@ -110,5 +110,20 @@ class ProfileController extends Controller
         }
             return back()->withErrors("User/Password Tidak tepat");
     }
+
+    public function data(){
+        $data = UserModel::all();
+        return view('view_data', compact('data'));
+    }
+
+    public function hapus($id){
+        UserModel::find($id)->delete();
+        return redirect()->back()->with('success','Data berhasil dihapus');
+    }
+
+    public function page_data(){
+        $data=UserModel::paginate(2);
+        return view('view_page_data', compact('data'));
+    }
 }
 

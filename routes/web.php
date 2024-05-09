@@ -15,3 +15,8 @@ Route::post('save_register', [ProfileController::class, 'save_register']);
 
 Route::post('action_login', [ProfileController::class, 'action_login']);
 Route::get('dashboard', [ProfileController::class, 'dashboard']);
+
+Route::get('view_data', [ProfileController::class, 'data']);
+Route::get('view_page_data', [ProfileController::class, 'page_data']);
+Route::delete('hapus_data/{data}', [ProfileController::class, 'hapus']);
+
