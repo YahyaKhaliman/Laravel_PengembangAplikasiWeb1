@@ -29,11 +29,11 @@
     <table class='table table-hover'>
         <thead>
             <tr>
-                <th scope='col'>#</th>
+                <th scope='col'>No</th>
+                <th scope='col'>Foto</th> 
                 <th scope='col'>Nama</th>
                 <th scope='col'>Email</th>
                 <th scope='col'>Hak Akses</th>
-                <th scope='col'>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -41,13 +41,20 @@
             @foreach($data as $row)
                 <tr>
                     <td>{{ $no++ }}</td>
+                    <td>
+                        @if($row->foto)
+                            <img src="{{ asset('storage/image/' . $row->foto) }}" alt="Foto" width="50" height="50">
+                        @endif
+                    </td>
                     <td>{{ $row->nama }}</td>
                     <td>{{ $row->email }}</td>
                     <td>{{ $row->hak_akses }}</td>
                     <td>
-                        <form action='{{ url("hapus_data/{$row->user_id}") }}' method='POST'>
+                        <a href='{{ url("form_update/{$row->user_id}") }}' class='btn btn-primary'>Update</a>
+                        <form action='{{ url("hapus_data/{$row->user_id}") }}' method='POST' style='display:inline'>
                             @csrf
-                            @method('DELETE')<button class='btn btn-danger' type='submit' onclick='return confirm("Are you sure to delete?")'>Delete</button>
+                            @method('DELETE')
+                            <button class='btn btn-danger' type='submit' onclick='return confirm("Are you sure to delete?")'>Delete</button>
                         </form>
                     </td>
                 </tr>

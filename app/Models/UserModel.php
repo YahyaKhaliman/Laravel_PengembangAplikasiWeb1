@@ -18,6 +18,7 @@ class UserModel extends Authenticatable
         'nama',
         'email',
         'password',
-        'hak_akses'
+        'hak_akses',
+        'foto'
     ];
 }
