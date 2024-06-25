@@ -73,10 +73,6 @@ class ProfileController extends Controller
         ->withErrors($validator)
         ->withInput();
         }else{
-			$email=$request->emailaddress;
-			$nama=$request->nama;
-			$password=$request->password;
-			$hak_akses=$request->hak_akses;
 			$user=new UserModel;
 			$user->email=$request->emailaddress;
 			$user->nama=$request->nama;
