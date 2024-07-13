@@ -34,6 +34,12 @@
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Link</a>
         </li>
+        <li class="nav-item" >
+          <form id="logout-form" action="{{ url('logout') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin logout?');">
+              @csrf
+              <button type="submit" class="btn btn-link nav-link">Logout</button>
+          </form>
+      </li>
       </ul>
     </div>
   </div>

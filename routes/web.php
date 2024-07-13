@@ -22,3 +22,5 @@ Route::delete('hapus_data/{data}', [ProfileController::class, 'hapus']);
 
 Route::get('form_update/{user_id}', [ProfileController::class, 'form_update'])->name('form_update');
 Route::put('save_update', [ProfileController::class, 'save_update']);
+
+Route::post('/logout', [ProfileController::class, 'logout']);

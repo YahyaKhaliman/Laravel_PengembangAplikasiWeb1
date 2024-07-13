@@ -21,7 +21,7 @@
   </div>
 @endif
 
-<form action="{{url('save_register')}}" method="post" enctype = 'multipart/form-data'>
+<form action="{{url('save_register')}}" method="post" enctype = 'multipart/form-data' >
 {{ csrf_field() }}
   <div class="mb-3">
     <label for="emailaddress" class="form-label">Email</label>
@@ -43,8 +43,8 @@
         <option value="manager">Manager</option>
     </select>
   <div class="form-group">
-    <label for="recipient-name" class="col-form-label">Foto :</label>
-    <input type="file" class="form-control" id="image" name="image">
+    <label for="image" class="col-form-label">Foto</label><br>
+      <input type="file" class="form-control" id="image" name="image">
     <small class="help-block"></small>
   </div>
   </div>

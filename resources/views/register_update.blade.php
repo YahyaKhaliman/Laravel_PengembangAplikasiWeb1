@@ -18,34 +18,33 @@
 @if(session()->has('success'))
     <div class="alert alert-success">
     Data berhasil Dimasukan
-  </div>
+</div>
 @endif
 
 
 @php 
     $select1 = "";  $select2 = "";  $select3 = "";
-  @endphp
-  @if($detail_data['hak_akses']=="superuser")     
+@endphp
+@if($detail_data['hak_akses']=="superuser")     
     @php 
     $select1 = "selected";
-@endphp
-
+    @endphp
 @endif
-  @if($detail_data['hak_akses']=="direksi") 
-  @php 
-    $select2 = "selected";
-  @endphp
+
+@if($detail_data['hak_akses']=="direksi") 
+    @php 
+        $select2 = "selected";
+    @endphp
 @endif
 
 @if($detail_data['hak_akses']=="manager") 
-  @php 
-    $select3 = "selected";
-  @endphp
+    @php 
+        $select3 = "selected";
+    @endphp
 @endif
 
 <form action="{{url('save_update')}}" method="POST" enctype="multipart/form-data">
-    {{ csrf_field() }}
-    @method('PUT')
+    {{ csrf_field() }} @method('PUT')
     <div class="mb-3">
         <label for="emailaddress" class="form-label">Email</label>
         <input type="email" class="form-control" id="emailaddress" name="emailaddress" value="{{ $detail_data['email'] }}">

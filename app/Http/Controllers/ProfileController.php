@@ -69,19 +69,24 @@ class ProfileController extends Controller
 			'hak_akses.required' => 'Hak Akses Wajib Diisi.',
 		]);
 		if ($validator->fails()) {
-		return redirect('register')
-        ->withErrors($validator)
-        ->withInput();
+            return redirect('register')
+                ->withErrors($validator)
+                ->withInput();
         }else{
-			$user=new UserModel;
-			$user->email=$request->emailaddress;
-			$user->nama=$request->nama;
-			$user->password=Hash::make($request->password);
-			$user->hak_akses=$request->hak_akses;
-			$user->foto=$request->foto;
-			$user->save();
-			return redirect('register')->with(['success' => 'Data Berhasil Disimpan!']);
-		}
+            $name = null;
+            if ($request->hasFile('image')) {
+                $name = $request->image->hashName();
+                $path = $request->file('image')->storeAs('public/image', $name);
+            }
+        }
+        $user = new UserModel;
+        $user->email = $request->emailaddress;
+        $user->nama = $request->nama;
+        $user->password = Hash::make($request->password);
+        $user->hak_akses = $request->hak_akses;
+        $user->foto = $name;
+        $user->save();
+        return redirect('register')->with(['success' => 'Data Berhasil Disimpan!']);
 	}
     
     public function form_login(){
@@ -116,7 +121,7 @@ class ProfileController extends Controller
 
     public function hapus($id){
         UserModel::find($id)->delete();
-        return redirect()->back()->with('success','Data berhasil dihapus');
+        return redirect('/')->with('success','Data berhasil dihapus');
     }
 
     public function page_data(){
@@ -150,15 +155,15 @@ class ProfileController extends Controller
         $name=$request->foto_old;
         $password=$request->password;
         if (request()->hasFile('image')){
-        $name=$request->image->hashName();
-        $path = $request->file('image')->storeAs('/public/image/'.$name);
-        Storage::delete('/public/image/'.$request->foto_old);
+            $name=$request->image->hashName();
+            $path = $request->file('image')->storeAs('/public/image/'.$name);
+            Storage::delete('/public/image/'.$request->foto_old);
         }     
         
         $user_id=$request->user_id;
         $user = UserModel::find($user_id);
         if($password!=""){
-        $user->password = $request->password;
+            $user->password = $request->password;
         }
         $user->email = $request->emailaddress;
         $user->nama = $request->nama;
@@ -167,5 +172,11 @@ class ProfileController extends Controller
         $user->save();
         return redirect('view_data')->with(['success' => 'Data Berhasil Diupdate!']);
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/')->with('success', 'Logout berhasil.');
     }
 }
