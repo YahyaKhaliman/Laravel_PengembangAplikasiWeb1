@@ -23,4 +23,11 @@ Route::delete('hapus_data/{data}', [ProfileController::class, 'hapus']);
 Route::get('form_update/{user_id}', [ProfileController::class, 'form_update'])->name('form_update');
 Route::put('save_update', [ProfileController::class, 'save_update']);
 
-Route::post('/logout', [ProfileController::class, 'logout']);
+Route::post('logout', [ProfileController::class, 'logout']);
+
+Route::get('view_page_data_api', [ProfileController::class, 'page_data_api']);
+Route::get('register_api', [ProfileController::class, 'register_api']);
+Route::post('save_register_api', [ProfileController::class, 'save_register_api']);
+Route::get('form_update_api/{id}', [ProfileController::class, 'form_update_api']);
+Route::put('save_update_api', [ProfileController::class, 'save_update_api']);
+Route::delete('hapus_data_api/{data}', [ProfileController::class, 'delete_api']);

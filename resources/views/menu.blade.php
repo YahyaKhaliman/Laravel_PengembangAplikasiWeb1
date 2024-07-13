@@ -21,11 +21,9 @@
             Link dropdown
           </a>
           <ul class="dropdown-menu">
-            @if(Auth::user()->hak_akses=='superuser')
             <li><a class="dropdown-item" href="{{url('form')}}">Form</a></li>
             <li><a class="dropdown-item" href="{{url('view_data')}}">Data</a></li>
             <li><a class="dropdown-item" href="{{url('view_page_data')}}">Data With Pagination</a></li>
-            @endif
             <li><a class="dropdown-item" href="{{url('register')}}">Register</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
