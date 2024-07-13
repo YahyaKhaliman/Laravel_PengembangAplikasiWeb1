@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ApiProfileController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::GET('data_pengguna', [ApiProfileController::class, 'page_data_pengguna']);
+Route::POST('save_pengguna', [ApiProfileController::class, 'save_pengguna']);
+Route::PUT('save_update_pengguna', [ApiProfileController::class, 'save_update_pengguna']);
+Route::DELETE('hapus_pengguna/{id}', [ApiProfileController::class, 'delete']);
