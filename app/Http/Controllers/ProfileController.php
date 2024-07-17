@@ -11,10 +11,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\support\facades\hash;
 use Illuminate\support\facades\Http;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use LengthException;
-use PHPUnit\TestRunner\TestResult\Collector;
 
 class ProfileController extends Controller
 {
@@ -185,6 +182,8 @@ class ProfileController extends Controller
         Auth::logout();
         return redirect('/')->with('success', 'Logout berhasil.');
     }
+
+
     public function paginate($items, $perPage = 3, $page = null, $options = []){
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);
@@ -198,7 +197,6 @@ class ProfileController extends Controller
         $data -> withPath('view_page_data_api');
         return view('view_page_data_api', compact('data'));
     }
-
 
     public function register_api(){
         return view ("register_api");
@@ -217,7 +215,7 @@ class ProfileController extends Controller
             'password' =>$request->password,
             'hak_akses' =>$request->hak_akses,
         ]);
-    }else{
+        }else{
         $response = Http::post($url, [
             'emailaddress' =>$request->emailaddress,
             'nama' =>$request->nama,
